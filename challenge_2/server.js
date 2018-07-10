@@ -1,11 +1,27 @@
 
 //Import express
-var express = require('express');
+const express = require('express');
+
+//Import path
+const path = require('path');
+
+//Import file system
+const fs = require('fs');
+
+//Import body-parser
+const parser = require('body-parser');
 
 //create app level object of Express JS
-var app = express();
+const app = express();
+
+app.use(parser.json());
+
+//Point express to client folder, 
+app.use(express.static(__dirname + '/client'));
+
 
 app.post('/', (req, res) => {
+  
   res.send('POST REQUEST HANDLED');
 });
 
