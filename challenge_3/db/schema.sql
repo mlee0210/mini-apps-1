@@ -27,7 +27,7 @@ CREATE TABLE userPay(
 user_id INT NOT NULL,
 credit VARCHAR(16) NOT NULL,
 expiry VARCHAR(5) NOT NULL,
-CVV VARCHAR(4) NOT NULL, 
+cvv VARCHAR(4) NOT NULL, 
 billingZip VARCHAR(5) NOT NULL,
 FOREIGN KEY (user_id) REFERENCES users(id)
 );
