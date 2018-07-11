@@ -1,26 +1,24 @@
-const app = {};
+$(document).ready(function() {    
+  
+   $('form').on('submit', function(e) {
+     e.preventDefault();	
+  
+    let message = $("#text").val();
 
-
- $('#submit').on('click', function() {
-   app.handleSubmit();	
- };
-
-app.handleSubmit = function(event) {
-  let message = {text: $('#text').val()};
-
-  $.ajax({
-  	type: 'POST',
-    data:  JSON.stringify(message),
-    contentType: 'application/json',
-    success: (data) => {
-      app.render(data)
-    } 
-  });
-
-  event.preventDefault();
-},
-
-app.render = function(data) {
-  $('#page').render(data);
-}
-
+      $.ajax({
+      type: 'POST',
+      url: '/',
+      data: message,
+      contentType: 'application/json',
+      success: function (result) {
+        result.map(function(item) {          
+          $("#page").append(item + ' ')
+        })
+      },
+      error: function (err) {
+        console.log('AJAX post fail', err); 
+      }
+    });
+  })
+ 
+})
