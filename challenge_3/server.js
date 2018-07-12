@@ -22,12 +22,12 @@ app.use((req, res, next) => {
 });
 
 
-app.get('/', (req, res) => {
-  res.send('CHECKOUT');
-});
+// app.get('/data', (req, res) => {
+//   res.send('CHECKOUT');
+// });
 
 //create function to handle post request
-app.post('/', (req, res) => {
+app.post('/data', (req, res) => {
 
   if (Object.keys(req.body).includes('name')) {
     const {name, email, password} = req.body; 
