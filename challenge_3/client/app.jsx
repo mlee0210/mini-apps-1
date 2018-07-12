@@ -37,6 +37,7 @@ class UserInfo extends React.Component {
   }	
 
   handleClick() {
+    console.log('handleClick called on UserInfo');
     var user = {
       name: this.state.name,
       email: this.state.email,
@@ -96,6 +97,7 @@ class UserShip extends React.Component {
   }
 
   handleClick() {
+    console.log('handleClick called on User Ship Info');
     var userShip = {
       address_1: this.state.address_1,
       address_2: this.state.address_2,
@@ -164,6 +166,7 @@ class UserPay extends React.Component {
   }
 
   handleClick() {
+    console.log('handleClick called on User Pay Info');
     var userPay = {
       credit: this.state.credit,
       expiry: this.state.expiry,
@@ -187,23 +190,45 @@ class UserPay extends React.Component {
   }
 
   render() {
-  	return (
-      <form id="userPayInfo">
-        <label>Credit Card: </label> 
-        <input type="text" name="credit" onChange={this.handleChange}/> <br/>
-        <label>Expiration Date: </label>
-        <input type="text" name="expiry" onChange={this.handleChange}/> <br/>
-        <label>CVV: </label>
-        <input type="text" name="cvv" onChange={this.handleChange}/> <br/>
-        <label>Billing Zipcode: </label> 
-        <input type="text" name="billingZip" onChange={this.handleChange}/> <br/>
-        
-        <button onClick={() => {this.handleClick(); this.setState({form:1})}}> Complete Checkout </button>
-      </form>  
-  	) 
+    if(this.state.form === 3) {
+  	  return (
+        <form id="userPayInfo">
+          <label>Credit Card: </label> 
+          <input type="text" name="credit" onChange={this.handleChange}/> <br/>
+          <label>Expiration Date: </label>
+          <input type="text" name="expiry" onChange={this.handleChange}/> <br/>
+          <label>CVV: </label>
+          <input type="text" name="cvv" onChange={this.handleChange}/> <br/>
+          <label>Billing Zipcode: </label> 
+          <input type="text" name="billingZip" onChange={this.handleChange}/> <br/>
+          
+          <button onClick={() => {this.handleClick(); this.setState({form:4})}}> Complete Checkout </button>
+        </form>  
+  	  ) 
+    }
+    if(this.state.form === 4) {
+      return (
+        <Complete />
+      )
+    }
   }
 };
 
+
+class Complete extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      form: 4
+    }
+  }
+
+  render() {
+    return (
+      <div>Thank you for Ordering From Our Awesome Store</div>
+    )
+  }
+}
 
 
 
